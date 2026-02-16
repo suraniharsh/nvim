@@ -9,5 +9,3 @@ require("config.lazy")		-- plugin manager
 require("config.options")	-- editor settings
 require("config.keymaps")	-- keymaps settings
 
--- vim.opt.runtimepath:append(vim.fn.stdpath("data") .. "/site")
-
