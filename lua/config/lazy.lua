@@ -1,4 +1,4 @@
---- =====================================
+-- =====================================
 -- lazy.lua
 -- Plugin manager setup
 -- =====================================
@@ -39,21 +39,24 @@ require("lazy").setup({
   },
 
   -- ======================
-  -- Telescope
+  -- Telescope (preview ON, treesitter OFF)
   -- ======================
   {
     "nvim-telescope/telescope.nvim",
     branch = "0.1.x",
     dependencies = { "nvim-lua/plenary.nvim" },
     keys = {
-      { "<leader>ff", "<cmd>Telescope find_files<cr>" },
-      { "<leader>fg", "<cmd>Telescope live_grep<cr>" },
-      { "<leader>fb", "<cmd>Telescope buffers<cr>" },
-      { "<leader>fh", "<cmd>Telescope help_tags<cr>" },
+      { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find files" },
+      { "<leader>fg", "<cmd>Telescope live_grep<cr>",  desc = "Live grep" },
+      { "<leader>fb", "<cmd>Telescope buffers<cr>",    desc = "Buffers" },
+      { "<leader>fh", "<cmd>Telescope help_tags<cr>",  desc = "Help tags" },
     },
     config = function()
       require("telescope").setup({
         defaults = {
+          preview = {
+            treesitter =  false -- REQUIRED for Neovim 0.11 stability
+          },
           prompt_prefix = "🔍 ",
           selection_caret = "➜ ",
           path_display = { "smart" },
@@ -69,20 +72,17 @@ require("lazy").setup({
     "williamboman/mason.nvim",
     dependencies = {
       "williamboman/mason-lspconfig.nvim",
-
       "hrsh7th/nvim-cmp",
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
     },
     config = function()
-      -- Mason
       require("mason").setup()
       require("mason-lspconfig").setup({
         ensure_installed = { "lua_ls" },
       })
 
-      -- Completion
       local cmp = require("cmp")
       cmp.setup({
         mapping = cmp.mapping.preset.insert({
@@ -131,16 +131,10 @@ require("lazy").setup({
         "json",
         "yaml",
       },
-      highlight = {
-        enable = true,
-        additional_vim_regex_highlighting = false,
-      },
-      indent = {
-        enable = true,
-      },
+      highlight = { enable = true },
+      indent = { enable = true },
     },
   },
-
 
   -- ======================
   -- Statusline
@@ -157,6 +151,23 @@ require("lazy").setup({
       },
     },
   },
+
+  -- ======================
+  -- Bufferline
+  -- ======================
+  {
+    "akinsho/bufferline.nvim",
+    version = "*",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    opts = {
+      options = {
+        diagnostics = "nvim_lsp",
+        separator_style = "thin",
+        show_buffer_close_icons = false,
+        show_close_icon = false,
+      },
+    },
+  }
 
 
 })

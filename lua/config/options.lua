@@ -52,3 +52,20 @@ end, {
   desc = "Toggle relative line numbers",
 })
 
+-------------------------------------------------
+-- TABS & INDENTATION (2 SPACES)
+-------------------------------------------------
+
+-- Use spaces instead of tabs
+vim.opt.expandtab = true
+
+-- Number of spaces a <Tab> counts for
+vim.opt.tabstop = 2
+
+-- Number of spaces for each indentation level
+vim.opt.shiftwidth = 2
+
+-- Makes <Tab> and <BS> smarter with indentation
+vim.opt.smarttab = true
+
+
