@@ -8,4 +8,6 @@
 require("config.lazy")		-- plugin manager
 require("config.options")	-- editor settings
 require("config.keymaps")	-- keymaps settings
+require("config.cmp")       -- completion
+require("config.lsp")       -- LSP configurations
 

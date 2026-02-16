@@ -66,53 +66,38 @@ require("lazy").setup({
   },
 
   -- ======================
-  -- LSP + Completion (Neovim 0.11+)
+  -- LSP Plugins (config in lua/config/lsp/)
   -- ======================
   {
     "williamboman/mason.nvim",
+    config = function()
+      require("mason").setup()
+    end,
+  },
+  {
+    "williamboman/mason-lspconfig.nvim",
+    dependencies = { "williamboman/mason.nvim" },
+    config = function()
+      require("mason-lspconfig").setup({
+        ensure_installed = { "lua_ls" },
+        -- rust_analyzer installed via rustup
+      })
+    end,
+  },
+  { "neovim/nvim-lspconfig" },
+
+  -- ======================
+  -- Completion
+  -- ======================
+  {
+    "hrsh7th/nvim-cmp",
     dependencies = {
-      "williamboman/mason-lspconfig.nvim",
-      "hrsh7th/nvim-cmp",
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
+      "L3MON4D3/LuaSnip",
+      "saadparwaiz1/cmp_luasnip",
     },
-    config = function()
-      require("mason").setup()
-      require("mason-lspconfig").setup({
-        ensure_installed = { "lua_ls" },
-      })
-
-      local cmp = require("cmp")
-      cmp.setup({
-        mapping = cmp.mapping.preset.insert({
-          ["<Tab>"] = cmp.mapping.select_next_item(),
-          ["<S-Tab>"] = cmp.mapping.select_prev_item(),
-          ["<CR>"] = cmp.mapping.confirm({ select = true }),
-          ["<C-Space>"] = cmp.mapping.complete(),
-        }),
-        sources = {
-          { name = "nvim_lsp" },
-          { name = "buffer" },
-          { name = "path" },
-        },
-      })
-
-      local capabilities = vim.lsp.protocol.make_client_capabilities()
-      capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
-
-      vim.lsp.config.lua_ls = {
-        capabilities = capabilities,
-        settings = {
-          Lua = {
-            diagnostics = { globals = { "vim" } },
-            workspace = { checkThirdParty = false },
-          },
-        },
-      }
-
-      vim.lsp.enable("lua_ls")
-    end,
   },
 
   -- ======================
@@ -130,6 +115,7 @@ require("lazy").setup({
         "bash",
         "json",
         "yaml",
+        "rust",
       },
       highlight = { enable = true },
       indent = { enable = true },
