@@ -68,4 +68,5 @@ vim.opt.shiftwidth = 2
 -- Makes <Tab> and <BS> smarter with indentation
 vim.opt.smarttab = true
 
-
+-- Disable default intro
+vim.opt.shortmess:append("I") 
