@@ -2,6 +2,20 @@
 
 A clean, modular Neovim configuration for Neovim 0.11+.
 
+## Screenshots
+
+### Dashboard
+![Dashboard](./screenshots/dashboard.png)
+
+### Editor
+![Editor](./screenshots/editor.png)
+
+### Telescope
+![Telescope](./screenshots/telescope.png)
+
+### LSP & Completion
+![LSP](./screenshots/lsp.png)
+
 ## Requirements
 
 - Neovim >= 0.11
