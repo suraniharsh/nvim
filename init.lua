@@ -4,4 +4,6 @@
 -- ================================
 
 -- Load general editor options
-require("options")
+
+require("config.lazy")       -- plugin manager
+require("config.options")    -- editor settings
