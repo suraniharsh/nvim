@@ -15,7 +15,21 @@ return {
   },
   config = function()
     require("telescope").setup({
+      pickers = {
+        find_files = {
+          hidden = true,      -- show dotfiles
+          no_ignore = false,  -- still respect .gitignore
+        },
+      },
       defaults = {
+        file_ignore_patterns = {
+          "target/",
+          "node_modules/",
+          "%.git/",
+          "%.lock",
+          "%.meta",
+          "%.d",
+        },
         preview = {
           treesitter = false, -- REQUIRED for Neovim 0.11 stability
         },
