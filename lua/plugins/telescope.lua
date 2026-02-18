@@ -29,6 +29,7 @@ return {
           "%.lock",
           "%.meta",
           "%.d",
+          "logs/"
         },
         preview = {
           treesitter = false, -- REQUIRED for Neovim 0.11 stability
