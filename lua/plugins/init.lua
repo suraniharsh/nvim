@@ -8,6 +8,7 @@ return {
   require("plugins.telescope"),
   require("plugins.lsp"),
   require("plugins.cmp"),
+  require("plugins.copilot"),
   require("plugins.autopairs"),
   require("plugins.gitsigns"),
   require("plugins.indent-blankline"),
